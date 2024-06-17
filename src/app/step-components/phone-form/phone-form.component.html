@@ -1,0 +1,37 @@
+<div class="step-item">
+  <form [formGroup]="phoneFormControl" (ngSubmit)="formSubmitSubject$.next()">
+    <mat-form-field>
+      <mat-label>Enter your phone number</mat-label>
+      <input
+        matInput
+        formControlName="phone"
+        placeholder="0123456789"
+        required
+      />
+      <mat-error *ngIf="phoneFormControl.controls.phone.errors?.['required']">
+        Phone number is required.
+      </mat-error>
+      <mat-error
+        *ngIf="phoneFormControl.controls.phone.errors?.['phoneInvalid'] "
+      >
+        Phone number is invalid
+      </mat-error>
+      <mat-error *ngIf="phoneFormControl.controls.phone.errors?.['apiError'] ">
+        Validation server not reachable. Try again another time
+      </mat-error>
+    </mat-form-field>
+
+    <div class="step-form-action">
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="isLoading"
+        class="nav-btn pull-right"
+      >
+        <section *ngIf="!isLoading">Next</section>
+
+        <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+      </button>
+    </div>
+  </form>
+</div>

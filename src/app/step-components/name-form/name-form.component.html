@@ -1,0 +1,24 @@
+<div class="step-item">
+  <form [formGroup]="nameFormControl">
+    <mat-form-field>
+      <mat-label>Enter your name</mat-label>
+      <input matInput formControlName="name" placeholder="Name" required />
+      <mat-error *ngIf="nameFormControl.controls.name.errors?.['required']">
+        Name is required.
+      </mat-error>
+      <mat-error *ngIf="nameFormControl.controls.name.errors?.['minlength']">
+        Name must be at least 3 characters long.
+      </mat-error>
+    </mat-form-field>
+    <div class="step-form-action">
+      <button
+        type="submit"
+        mat-raised-button
+        matStepperNext
+        class="nav-btn pull-right"
+      >
+        Next
+      </button>
+    </div>
+  </form>
+</div>

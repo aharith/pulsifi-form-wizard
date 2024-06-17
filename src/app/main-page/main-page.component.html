@@ -1,0 +1,37 @@
+<mat-card appearance="outlined" class="main-card">
+  <mat-card-header>
+    <mat-card-title> 3-Step Form Wizard</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="nameForm">
+        <ng-template matStepLabel>Fill in your name</ng-template>
+        <app-name-form #NameFormComponent></app-name-form>
+      </mat-step>
+      <mat-step [stepControl]="emailForm">
+        <ng-template matStepLabel>Fill in your email</ng-template>
+        <app-email-form
+          #EmailFormComponent
+          [stepper]="stepper"
+        ></app-email-form>
+      </mat-step>
+      <mat-step [stepControl]="phoneForm">
+        <ng-template matStepLabel>Fill in your phone number</ng-template>
+        <app-phone-form
+          #PhoneFormComponent
+          [stepper]="stepper"
+        ></app-phone-form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <p>Click <strong>submit</strong> to log all values.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="onSubmit()">Submit</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>
